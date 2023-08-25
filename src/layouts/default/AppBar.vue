@@ -6,26 +6,77 @@
       Base Preset
     </v-app-bar-title>
   </v-app-bar> -->
+  
+  <v-navigation-drawer v-model="drawerVisible">
+    <v-list>
+      <v-list-item>
+        <v-btn to="/" text="Home"></v-btn>
+      </v-list-item>
+      <v-list-item>
+          <v-btn to="/area" text="Area"></v-btn>
+      </v-list-item>
+      <v-list-item>
+          <v-btn text="Desperfecto"></v-btn>
+      </v-list-item>
+      <v-list-item>
+          <v-btn text="Equipo"></v-btn>
+      </v-list-item>
+      <v-list-item>
+          <v-btn text="Material"></v-btn>
+      </v-list-item>
+      <v-list-item>
+          <v-btn text="Revisado"></v-btn>
+      </v-list-item>
+      <v-list-item>
+          <v-btn text="Tipos de Equipo"></v-btn>
+      </v-list-item>
+      <v-list-item>
+          <v-btn text="Tipos de Mantenimiento"></v-btn>
+      </v-list-item>
+      <v-list-item>
+          <v-btn text="Tipos de Motor"></v-btn>
+      </v-list-item>
+      <v-list-item>
+          <v-btn text="Tipos de Notificacion"></v-btn>
+      </v-list-item>
+      <v-list-item>
+          <v-btn text="Tipos de Refrigerante"></v-btn>
+      </v-list-item>
+      <v-list-item>
+          <v-btn text="Tipos de Usuario"></v-btn>
+      </v-list-item>
+    </v-list>
+
+  </v-navigation-drawer>
   <v-app-bar>
-    <v-navigation-drawer>
-      <v-list>
-        <v-list-item title="Navigation drawer"></v-list-item>
-      </v-list>
-    </v-navigation-drawer>
     <!-- #COLOR FONDO -->
     <!-- <template v-slot:image>
       <v-img gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"></v-img>
     </template> -->
 
     <template v-slot:prepend>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon  @click="drawerVisible = !drawerVisible"></v-app-bar-nav-icon>
     </template>
 
     <v-app-bar-title>Control Mantenimiento</v-app-bar-title>
 
     <v-spacer></v-spacer>
 
-    <v-btn icon>
+    <v-expand-x-transition>
+      <v-card
+        v-show="expand2"
+        height="50"
+        width="300"
+        class="mx-auto bg-secondary"
+      ><v-text-field
+      ></v-text-field></v-card>
+    </v-expand-x-transition>
+    <v-btn
+        class="ma-2"
+        color="secondary"
+        @click="expand2 = !expand2"
+        icon
+      >
       <v-icon>mdi-magnify</v-icon>
     </v-btn>
 
@@ -90,6 +141,8 @@ export default {
   data() {
     return {
       account: {},
+      expand2: false,
+      drawerVisible: false,
     };
   },
   async created() {
